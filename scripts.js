@@ -43,22 +43,22 @@ checkout = selector(checkout)
 checkin = selector(checkin)
 
 checkin[0].color = none
-status[0].style.color = STATUS_MAP.status.color
-reserve[0] = STATUS_MAP.status.canReserver ? 'enabled' : 'disabled'
-checkout[0] = STATUS_MAP.status.canCheckout ? 'enabled' : 'disabled'
-checkin[0] = STATUS_MAP.status.canCheckIn ? 'enabled' : 'disabled'
+status[0].style.color = STATUS_MAP.overdue.color
+reserve[0] = STATUS_MAP.overdue.canReserve ? 'enabled' : 'disabled'
+checkout[0] = STATUS_MAP.overdue.canCheckout ? 'enabled' : 'disabled'
+checkin[0] = STATUS_MAP.overdue.canCheckIn ? 'enabled' : 'disabled'
 
-checkin.1.color = none
-status.1.style.color = STATUS_MAP.status.color
-reserve.1 = STATUS_MAP.status.canReserver ? 'enabled' : 'disabled'
-checkout.1 = STATUS_MAP.status.canCheckout ? 'enabled' : 'disabled'
-checkin.1 = STATUS_MAP.status.canCheckIn ? 'enabled' : 'disabled'
+checkin[1].color = none
+status[1].style.color = STATUS_MAP.reserved.color
+reserve[1] = STATUS_MAP.reserved.canReserve ? 'enabled' : 'disabled'
+checkout[1] = STATUS_MAP.reserved.canCheckout ? 'enabled' : 'disabled'
+checkin[1] = STATUS_MAP.reserved.canCheckIn ? 'enabled' : 'disabled'
 
-checkin.2.color = none
-status.2.style.color = STATUS_MAP.status.color
-reserve.2 = STATUS_MAP.status.canReserver ? 'enabled' : 'disabled'
-checkout.2 = STATUS_MAP.status.canCheckout ? 'enabled' : 'disabled'
-checkin.2 = STATUS_MAP.status.canCheckIn ? 'enabled' : 'disabled'
+checkin[2].color = none
+status[2].style.color = STATUS_MAP.shelf.color
+reserve[2] = STATUS_MAP.shelf.canReserve ? 'enabled' : 'disabled'
+checkout[2] = STATUS_MAP.shelf.canCheckout ? 'enabled' : 'disabled'
+checkin[2] = STATUS_MAP.shelf.canCheckIn ? 'enabled' : 'disabled'
 
 const button = document.getElementsByName('button');
 button.style.backgroundColor = 'black';
@@ -69,8 +69,10 @@ button.addEventListener('click', function () {
 });
 
 const book1Id = document.getElementById('book1');
-const book2Id = document.getElementById('book2');
-const book3Id = document.getElementById('book3');
+book1Id.style.color = STATUS_MAP.overdue.color;
 
-const book1Button = book1Id.button;
-book1Button.style.color = 'red'
+const book2Id = document.getElementById('book2');
+book2Id.style.color = STATUS_MAP.reserved.color;
+
+const book3Id = document.getElementById('book3');
+book3Id.style.color = STATUS_MAP.shelf.color;
