@@ -1,78 +1,86 @@
 const STATUS_MAP = {
-    shelf: {
-        color: 'green',
-        canReserve: true,
-        canCheckout: true,
-        canCheckIn: false,
+  shelf: {
+    color: "green",
+    canReserve: true,
+    canCheckout: true,
+    canCheckIn: false,
+  },
+  reserved: {
+    color: "blue",
+    canReserve: false,
+    canCheckout: true,
+    canCheckIn: false,
+  },
+  overdue: {
+    color: "red",
+    canReserve: false,
+    canCheckout: false,
+    canCheckIn: true,
+  },
+  checkedOut: {
+    color: "orange",
+    canReserve: false,
+    canCheckout: false,
+    canCheckIn: true,
+  },
+};
+
+// Edit below line
+const books = [
+  {
+    status: document.querySelector('#book1').innerText,
+    html: {
+      status: document.querySelector('#book1 .status'),
+      reserve: document.querySelector('#book1 .reserve'),
+      checkout: document.querySelector('#book1 .checkout'),
+      checkin: document.querySelector('#book1 .checkin'),
     },
-    reserved: {
-        color: 'blue',
-        canReserve: false,
-        canCheckout: true,
-        canCheckIn: false,
+  },
+
+  {
+    status: document.querySelector('#book2').innerText,
+    html: {
+      status: document.querySelector('#book2 .status'),
+      reserve: document.querySelector('#book2 .reserve'),
+      checkout: document.querySelector('#book2 .checkout'),
+      checkin: document.querySelector('#book2 .checkin'),
     },
-    overdue: {
-        color: 'red',
-        canReserve: false,
-        canCheckout: false,
-        canCheckIn: true,
+  },
+  {
+    status: document.querySelector('#book3').innerText,
+    html: {
+      status: document.querySelector('#book3 .status'),
+      reserve: document.querySelector('#book3 .reserve'),
+      checkout: document.querySelector('#book3 .checkout'),
+      checkin: document.querySelector('#book3 .checkin'),
     },
-    checkedOut: {
-        color: 'orange',
-        canReserve: false,
-        canCheckout: false,
-        canCheckIn: true,
-    }
-}
+  },
+];
 
-// Edit below line 
+const button = document.getElementsByName("button");
+button.style.backgroundColor = "black";
 
-status = selector(status)
-reserve = selector(reserve)
-checkout = selector(checkout)
-checkin = selector(checkin)
-
-status = selector(status)
-reserve = selector(reserve)
-checkout = selector(checkout)
-checkin = selector(checkin)
-
-status = selector(status)
-reserve = selector(reserve)
-checkout = selector(checkout)
-checkin = selector(checkin)
-
-checkin[0].color = none
-status[0].style.color = STATUS_MAP.overdue.color
-reserve[0] = STATUS_MAP.overdue.canReserve ? 'enabled' : 'disabled'
-checkout[0] = STATUS_MAP.overdue.canCheckout ? 'enabled' : 'disabled'
-checkin[0] = STATUS_MAP.overdue.canCheckIn ? 'enabled' : 'disabled'
-
-checkin[1].color = none
-status[1].style.color = STATUS_MAP.reserved.color
-reserve[1] = STATUS_MAP.reserved.canReserve ? 'enabled' : 'disabled'
-checkout[1] = STATUS_MAP.reserved.canCheckout ? 'enabled' : 'disabled'
-checkin[1] = STATUS_MAP.reserved.canCheckIn ? 'enabled' : 'disabled'
-
-checkin[2].color = none
-status[2].style.color = STATUS_MAP.shelf.color
-reserve[2] = STATUS_MAP.shelf.canReserve ? 'enabled' : 'disabled'
-checkout[2] = STATUS_MAP.shelf.canCheckout ? 'enabled' : 'disabled'
-checkin[2] = STATUS_MAP.shelf.canCheckIn ? 'enabled' : 'disabled'
-
-const button = document.getElementsByName('button');
-button.style.backgroundColor = 'black';
-
-button.style.color = 'white';
-button.addEventListener('click', function () {
-    button.style.backgroundColor = 'grey';
+button.style.color = "white";
+button.addEventListener("click", function () {
+  button.style.backgroundColor = "grey";
 });
 
-const book1Id = document.getElementById('book1');
-book1Id.style.color = STATUS_MAP.overdue.color;
+books[0].html.checkin.style.color = ''
+books[1].html.checkin.style.color = ''
+books[2].html.checkin.style.color = ''
 
-const book2Id = document.getElementById('book2');
-book2Id.style.color = STATUS_MAP.reserved.color;
+books[0].html.checkin.style.color = STATUS_MAP[books[0].status].color;
+books[1].html.checkin.style.color = STATUS_MAP[books[1].status].color;
+books[2].html.checkin.style.color = STATUS_MAP[books[2].status].color;
 
-const book3Id = document.getElementById('book3');
-book3Id.style.color = STATUS_MAP.shelf.color;
+books[0].html.reserve.disabled = !STATUS_MAP[books[0].status].canReserve;
+books[1].html.checkin.disabled = !STATUS_MAP[books[1].status].canReserve;
+books[2].html.checkin.disabled = !STATUS_MAP[books[2].status].canReserve;
+
+books[0].html.checkout.disabled = !STATUS_MAP[books[0].status].canCheckout;
+books[1].html.checkin.disabled = !STATUS_MAP[books[1].status].canCheckout;
+books[2].html.checkin.disabled = !STATUS_MAP[books[2].status].canCheckout;
+
+books[0].html.checkin.disabled = !STATUS_MAP[books[0].status].canCheckIn;
+books[1].html.checkin.disabled = !STATUS_MAP[books[1].status].canCheckIn;
+books[2].html.checkin.disabled = !STATUS_MAP[books[2].status].canCheckIn;
